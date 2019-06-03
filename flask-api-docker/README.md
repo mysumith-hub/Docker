@@ -2,34 +2,26 @@ touch Dockerfile
 
 Add the following content to Dockerfile
 --------------------------------------------------------------------------------
-#! Use an official Python runtime as a parent image
-
+Use an official Python runtime as a parent image
 FROM python:3
 
-#! Set the working directory to /app
-
+Set the working directory to /app
 WORKDIR /app
 
-#! Copy the current directory contents into the container at /app
-
+# Copy the current directory contents into the container at /app
 ADD . /app
 
-#! Install any needed packages specified in requirements.txt
-
+# Install any needed packages specified in requirements.txt
 RUN pip install Flask
 
-#! Make port 80 available to the world outside this container
-
+# Make port 80 available to the world outside this container
 EXPOSE 80
 
-#! Define environment variable
-
+# Define environment variable
 ENV NAME Flask-world
 
-#! Run app.py when the container launches
-
+# Run app.py when the container launches
 CMD ["python","api.py"]
-
 --------------------------------------------------------------------------------
 - To create image
 docker build -t <name>:<tag_version> .
@@ -52,6 +44,8 @@ We can create our own registry by
 docker tag flask-api:latest localhost:5000/flask-api:1.0.0
 2. Push the image
 docker push localhost:5000/flask-api:1.0.0
+3. Doker run from local registry
+docker run localhost:5000/flask-api:1.0.0
 
 we can use below api to check the images in regostry
 http://localhost:5000/v2/_catalog
